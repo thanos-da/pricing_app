@@ -87,7 +87,7 @@ pipeline {
           ]) {
             // Set proper permissions for keys
             sh """
-              chmopd 600 ${JEN_KEY} ${PEM_KEY}
+              chmod 600 ${JEN_KEY} ${PEM_KEY}
               ssh-keygen -y -f ${JEN_KEY} >/dev/null || echo 'Warning: Key verification failed'
             """
 
