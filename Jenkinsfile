@@ -87,7 +87,7 @@ pipeline {
           ]) {
             // Set proper permissions for keys
             sh """
-              chmod 600 ${JEN_KEY} ${PEM_KEY}
+              chmopd 600 ${JEN_KEY} ${PEM_KEY}
               ssh-keygen -y -f ${JEN_KEY} >/dev/null || echo 'Warning: Key verification failed'
             """
 
@@ -111,7 +111,7 @@ all:
             sh 'cat inventory.yml'
 
             // Run playbook with verbose output for debugging
-            sh "ansible-playbook -i inventory.yml -vv ${ANSIBLE_DIR}/acquiflow.yml"
+            sh "ansible-playbook -i inventory.yml -vv ${ANSIBLE_DIR}/playbook.yml"
           }
         }
       }
