@@ -1,16 +1,16 @@
 ---
-- name: Generate SSH key on Jenkins server and propagate to target server
+- name: Generate SSH key on Jenkins server and add it to the deploy server
   hosts: localhost
   gather_facts: false
 
   vars:
     ssh_key_path: /var/lib/jenkins/.ssh/id_rsa
     public_key_path: /var/lib/jenkins/.ssh/id_rsa.pub
-    target_user: jenkins 
+    target_user: jenkins
 
   tasks:
 
-    - name: Generate SSH key pair if not exists
+    - name: Generate SSH key pair if not exist
       community.crypto.openssh_keypair:
         path: "{{ ssh_key_path }}"
         type: rsa
@@ -59,7 +59,7 @@
         state: present
         backup: yes
         
-- name: Install Ruby 3.0.0 with RVM and custom OpenSSL for existing user 'rpx'
+- name: Install Ruby 3.0.0 with RVM and custom OpenSSL for 'rpx' user
   hosts: rails-server-2
   become: yes
 
