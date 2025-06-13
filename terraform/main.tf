@@ -29,7 +29,7 @@ data "aws_ami" "ubuntu_24_04" {
 }
 
 # EC2 Instance Configuration
-resource "aws_instance" "acquiflow" {
+resource "aws_instance" "pricingapp" {
   ami                    = data.aws_ami.ubuntu_24_04.id
   instance_type          = var.instance_type
   subnet_id              = var.subnet_id         
@@ -43,7 +43,7 @@ resource "aws_instance" "acquiflow" {
   }
 
   tags = {
-    Name        = "Acquiflow"
+    Name        = "pricingapp"
     Environment = "Production"
     ManagedBy   = "Terraform"
   }
@@ -51,10 +51,10 @@ resource "aws_instance" "acquiflow" {
 
 output "instance_public_ip" {
   description = "Public IP address of the DMA application instance"
-  value       = aws_instance.acquiflow.public_ip
+  value       = aws_instance.pricingapp.public_ip
 }
 
 output "instance_id" {
   description = "ID of the created EC2 instance"
-  value       = aws_instance.acquiflow.id
+  value       = aws_instance.pricingapp.id
 }
